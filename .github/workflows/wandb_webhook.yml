@@ -1,0 +1,64 @@
+name: Update and Deploy to GitHub Pages
+
+on:
+  # WandB Webhook 트리거
+  repository_dispatch:
+    types: [model_alias_updated]
+  # main 브랜치에 푸시될 때 배포 트리거
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  update-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out the repository
+      uses: actions/checkout@v2
+
+    - name: Update script.js with new model data
+      run: |
+        echo "Updating notification/script.js with new model data..."
+        cat <<EOF > notification/script.js
+        document.addEventListener('DOMContentLoaded', function () {
+            const modelStatus = "${{ github.event.client_payload.alias }}";
+            const entityName = "${{ github.event.client_payload.entity_name }}";
+            const projectName = "${{ github.event.client_payload.project_name }}";
+            const artifactCollectionName = "${{ github.event.client_payload.artifact_collection_name }}";
+            const modelId = "${{ github.event.client_payload.model_id }}";
+
+            const statusElement = document.getElementById('status');
+            const announcementElement = document.getElementById('announcement');
+
+            statusElement.textContent = \`Entity: \${entityName}, Project: \${projectName}\`;
+            announcementElement.textContent = \`Model ID: \${modelId}, Alias: \${modelStatus}\`;
+
+            if (modelStatus === "production") {
+                announcementElement.style.color = "green";
+                announcementElement.textContent += " - The latest model has been deployed!";
+            } else {
+                announcementElement.style.color = "red";
+                announcementElement.textContent += " - Model is not in production.";
+            }
+        });
+        EOF
+
+    - name: Commit and push changes
+      env:
+        GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        git config --local user.name "github-actions"
+        git config --local user.email "actions@github.com"
+        git add notification/script.js
+        git commit -m "Update notification/script.js with new model data"
+        git push origin main
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./notification
