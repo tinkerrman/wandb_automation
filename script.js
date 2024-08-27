@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     // 모델 정보 변수들 (실제로는 GitHub Actions에서 제공)
-    const modelStatus = "production";
+    const modelStatus = "service";
     const eventAuthor = "hyunwoo-oh";
     const artifactCollectionName = "ADAS handson models";
     const modelId = "wandb_Y72QKAKNEFI3G/wandb-registry-model/ADAS handson models:v0";
@@ -15,7 +15,6 @@ document.addEventListener('DOMContentLoaded', function () {
         // 모델 정보 표시
         const infoHTML = `
             <h3>Model Details</h3>
-            <p><strong>Entity:</strong> ${entityName}</p>
             <p><strong>Author:</strong> ${eventAuthor}</p>
             <p><strong>Artifact Collection:</strong> ${artifactCollectionName}</p>
             <p><strong>Model ID:</strong> ${modelId}</p>
@@ -23,16 +22,16 @@ document.addEventListener('DOMContentLoaded', function () {
         modelInfoElement.innerHTML = infoHTML;
 
         // 상태에 따라 메시지 스타일링
-        if (modelStatus === "production") {
+        if (modelStatus === "service") {
             announcementElement.style.color = "green";
-            announcementElement.textContent = "🚀 The latest model has been deployed!";
+            announcementElement.textContent = "🚀 The new model has been deployed!";
             announcementElement.style.backgroundColor = "#d4edda";
             announcementElement.style.border = "1px solid #c3e6cb";
             announcementElement.style.padding = "10px";
             announcementElement.style.borderRadius = "5px";
         } else {
             announcementElement.style.color = "red";
-            announcementElement.textContent = "⚠️ Model is not in production.";
+            announcementElement.textContent = "⚠️ Model is not in service.";
             announcementElement.style.backgroundColor = "#f8d7da";
             announcementElement.style.border = "1px solid #f5c6cb";
             announcementElement.style.padding = "10px";
