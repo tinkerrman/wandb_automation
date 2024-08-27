@@ -19,15 +19,21 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Update script.js with new model data
+      env:
+        MODEL_STATUS: ${{ github.event.client_payload.alias }}
+        ENTITY_NAME: ${{ github.event.client_payload.entity_name }}
+        PROJECT_NAME: ${{ github.event.client_payload.project_name }}
+        ARTIFACT_COLLECTION_NAME: ${{ github.event.client_payload.artifact_collection_name }}
+        MODEL_ID: ${{ github.event.client_payload.model_id }}
       run: |
         echo "Updating notification/script.js with new model data..."
         cat <<EOF > notification/script.js
         document.addEventListener('DOMContentLoaded', function () {
-            const modelStatus = "${{ github.event.client_payload.alias }}";
-            const entityName = "${{ github.event.client_payload.entity_name }}";
-            const projectName = "${{ github.event.client_payload.project_name }}";
-            const artifactCollectionName = "${{ github.event.client_payload.artifact_collection_name }}";
-            const modelId = "${{ github.event.client_payload.model_id }}";
+            const modelStatus = "${MODEL_STATUS}";
+            const entityName = "${ENTITY_NAME}";
+            const projectName = "${PROJECT_NAME}";
+            const artifactCollectionName = "${ARTIFACT_COLLECTION_NAME}";
+            const modelId = "${MODEL_ID}";
 
             const statusElement = document.getElementById('status');
             const announcementElement = document.getElementById('announcement');
