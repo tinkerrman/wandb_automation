@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const modelStatus = "product";
+    const modelStatus = "production";
     const entityName = "wandb_Y72QKAKNEFI3G";
     const projectName = "wandb-registry-model";
     const artifactCollectionName = "ADAS handson models";
-    const modelId = "wandb-artifact://_id/QXJ0aWZhY3Q6MTE2NzM1MTk0OA==";
+    const modelId = "wandb-artifact://_id/QXJ0aWZhY3Q6MTE2NzI0MDkwMA==";
 
     const statusElement = document.getElementById('status');
     const announcementElement = document.getElementById('announcement');
