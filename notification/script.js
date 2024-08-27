@@ -1,8 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     // 모델 정보 변수들 (실제로는 GitHub Actions에서 제공)
     const modelStatus = "{{MODEL_STATUS}}";
-    const entityName = "{{ENTITY_NAME}}";
-    const projectName = "{{PROJECT_NAME}}";
+    const eventAuthor = "{{EVENT_AUTHOR}}";
     const artifactCollectionName = "{{ARTIFACT_COLLECTION_NAME}}";
     const modelId = "{{MODEL_ID}}";
 
@@ -17,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const infoHTML = `
             <h3>Model Details</h3>
             <p><strong>Entity:</strong> ${entityName}</p>
-            <p><strong>Project:</strong> ${projectName}</p>
+            <p><strong>Author:</strong> ${eventAuthor}</p>
             <p><strong>Artifact Collection:</strong> ${artifactCollectionName}</p>
             <p><strong>Model ID:</strong> ${modelId}</p>
         `;
