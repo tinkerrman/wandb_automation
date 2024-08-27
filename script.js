@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', function () {
     // 모델 정보 변수들 (실제로는 GitHub Actions에서 제공)
-    const modelStatus = "";
-    const entityName = "";
-    const projectName = "";
-    const artifactCollectionName = "";
-    const modelId = "";
+    const modelStatus = "production";
+    const entityName = "wandb_Y72QKAKNEFI3G";
+    const projectName = "wandb-registry-model";
+    const artifactCollectionName = "ADAS handson models";
+    const modelId = "wandb-artifact://_id/QXJ0aWZhY3Q6MTE2NzM1MTk0OA==";
 
     // HTML 요소들 참조
     const statusElement = document.getElementById('status');
