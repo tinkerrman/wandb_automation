@@ -21,7 +21,7 @@ jobs:
     - name: Replace placeholders in script.js
       run: |
         sed -i 's|{{MODEL_STATUS}}|${{ github.event.client_payload.alias }}|g' notification/script.js
-        sed -i 's|{{EVENT_AUTHOR}}|${{ github.event.client_payload.event_auther }}|g' notification/script.js
+        sed -i 's|{{EVENT_AUTHOR}}|${{ github.event.client_payload.event_author }}|g' notification/script.js
         sed -i 's|{{ARTIFACT_COLLECTION_NAME}}|${{ github.event.client_payload.artifact_collection_name }}|g' notification/script.js
         sed -i 's|{{MODEL_ID}}|${{ github.event.client_payload.model_id }}|g' notification/script.js
 
