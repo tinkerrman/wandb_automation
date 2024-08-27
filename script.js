@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', function () {
     // 모델 정보 변수들 (실제로는 GitHub Actions에서 제공)
-    const modelStatus = data.modelStatus;
-    const eventAuthor = data.eventAuthor;
-    const artifactCollectionName = data.artifactCollectionName;
-    const modelId = data.modelId;
+    const modelStatus = "";
+    const eventAuthor = "";
+    const artifactCollectionName = "";
+    const modelId = "";
 
     // HTML 요소들 참조
     const statusElement = document.getElementById('status');
