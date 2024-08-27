@@ -18,18 +18,13 @@ jobs:
     - name: Check out the repository
       uses: actions/checkout@v2
 
-    - name: Debug Payload
+    - name: Replace placeholders in script.js
       run: |
-        echo "Alias: ${{ github.event.client_payload.alias }}"
-        echo "Entity Name: ${{ github.event.client_payload.entity_name }}"
-        echo "Project Name: ${{ github.event.client_payload.project_name }}"
-        echo "Artifact Collection Name: ${{ github.event.client_payload.artifact_collection_name }}"
-        echo "Model ID: ${{ github.event.client_payload.model_id }}"
-
-    - name: Update script.js with new model data
-      run: |
-        echo "Updating notification/script.js with new model data..."
-        cat notification/script.js
+        sed -i 's/{{MODEL_STATUS}}/${{ github.event.client_payload.alias }}/g' notification/script.js
+        sed -i 's/{{ENTITY_NAME}}/${{ github.event.client_payload.entity_name }}/g' notification/script.js
+        sed -i 's/{{PROJECT_NAME}}/${{ github.event.client_payload.project_name }}/g' notification/script.js
+        sed -i 's/{{ARTIFACT_COLLECTION_NAME}}/${{ github.event.client_payload.artifact_collection_name }}/g' notification/script.js
+        sed -i 's/{{MODEL_ID}}/${{ github.event.client_payload.model_id }}/g' notification/script.js
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
