@@ -1,10 +1,8 @@
 name: Update and Deploy to GitHub Pages
 
 on:
-  # WandB Webhook 트리거
   repository_dispatch:
     types: [model_alias_updated]
-  # main 브랜치에 푸시될 때 배포 트리거
   push:
     branches:
       - main
@@ -46,16 +44,6 @@ jobs:
             }
         });
         EOF
-
-    - name: Commit and push changes
-      env:
-        GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-      run: |
-        git config --local user.name "github-actions"
-        git config --local user.email "actions@github.com"
-        git add notification/script.js
-        git commit -m "Update notification/script.js with new model data"
-        git push origin main
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
