@@ -50,3 +50,6 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./notification
+        destination_dir: . # 이 옵션은 gh-pages 브랜치의 루트 디렉토리로 배포합니다.
+        keep_files: true # 기존 파일을 유지하고 새로운 파일만 덮어씁니다.
+        force_orphan: true # orphan 브랜치를 사용하여 푸시 실패 문제를 해결할 수 있습니다.
