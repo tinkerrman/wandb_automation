@@ -25,6 +25,9 @@ jobs:
         sed -i 's|{{ARTIFACT_COLLECTION_NAME}}|${{ github.event.client_payload.artifact_collection_name }}|g' notification/script.js
         sed -i 's|{{MODEL_ID}}|${{ github.event.client_payload.model_id }}|g' notification/script.js
 
+    - name: List files in notification directory
+      run: ls -la ./notification
+
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
