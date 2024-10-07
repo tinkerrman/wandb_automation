@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const modelStatus = "service";
     const eventAuthor = "hyunwoo-oh";
     const artifactCollectionName = "ADAS handson models";
-    const modelId = "wandb32/wandb-registry-model/ADAS handson models:v6";
+    const modelId = "wandb32/wandb-registry-model/ADAS handson models:v5";
 
     // HTML 요소들 참조
     const statusElement = document.getElementById('status');
